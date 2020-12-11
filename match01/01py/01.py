@@ -36,4 +36,3 @@ if __name__ == "__main__":
     for i in range(1, 6):
         res = getHtml(i)
         print(res)
-        # time.sleep(0.1)
