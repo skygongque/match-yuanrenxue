@@ -9,7 +9,7 @@ http://match.yuanrenxue.com/match/9
 ```
 https://github.com/DingZaiHub/ob-decrypt
 ```
-我fork之后改了一个小bug已经提了pull request暂未被merge，针对本题可直接使用一下的代码。
+我fork之后改了一个小bug已经提了pull request暂未被merge，针对**本题**建议使用以下代码。
 ```
 https://github.com/skygongque/ob-decrypt
 ```
@@ -17,7 +17,7 @@ https://github.com/skygongque/ob-decrypt
 ```
 http://tool.yuanrenxue.com/decode_obfuscator
 ```
-网站提供的ob解混淆工具的通用性很高且还原程度很高，但针对本题改变了部分逻辑而且不易发现。  
+网站提供的ob解混淆工具的**通用性很高且还原程度很高**，但针对本题改变了部分逻辑而且不易发现。  
 ### reres
 > ReRes可以用来更改页面请求响应的内容。通过指定规则，您可以把请求映射到其他的url，也可以映射到本机的文件或者目录。ReRes支持单个url映射，也支持目录映射。  
 谷歌应用商店下载  
@@ -39,13 +39,17 @@ https://github.com/annnhan/ReRes
 
 使用charles或者fiddler抓一下完整的包发现第一次请求`http://match.yuanrenxue.com/match/9`是一段代码还原后[/match/9还原后](./pic/09js/9_decrypt.js)  
 其中有一段代码明显是设置cookie的  
+
 ![](./pic/09/3.png)
 
 但是发现设置cookie时调用的函数decrypt并没有在这个js文件中定义，但是这个文件引用了我们之前还原过的文件udc.js。
 在9_udc_decrypt.js这个文件搜索果然找到了decrypt的定义。
+
 ![](./pic/09/6.png)
 
-然后我们可以设一个断点在decrypt的定义之后调用  
+然后我们可以设一个断点在decrypt的定义调用之后 
+然后在控制台输入下面代码。  
+
 ```
 for (var _0xe88f11 = 1; _0xe88f11 <= 2; _0xe88f11++) {
     res = decrypt("1609241711") + "r";
@@ -62,12 +66,18 @@ for (var _0xe88f11 = 1; _0xe88f11 <= 2; _0xe88f11++) {
 ## node.js中调试
 [还原后的udc.js文件](./pic/09js/9_udc_decrypt.js)将window["decrypt"] = _0x4f6d79后面的代码去掉剩下的在nodejs中调试。
 调试的时候注意try...catch的代码以及对window和global操作的代码。因为我们已经可以在浏览器动态调试，所以可以跟浏览器中对于位置的执行结果进行比较。  
-最后总结出来的几个在node.js运行需要改动的地方。 
-发现浏览器这个if判断是有值的，所以应该什么都不执行。 
+最后总结出来的几个在node.js运行需要改动的地方。   
+
+1. 发现浏览器这个if判断是有值的，所以应该什么都不执行。 
+
 ![](pic/09/9.png)  
-补充navigator 和 并把window指向global  
+
+2. 补充navigator 和 并把window指向global  
+
 ![](pic/09/10.png)
-最终node环境和浏览器环境的结果相同。  
+
+3. 最终node环境和浏览器环境的结果相同。  
+
 ![](pic/09/11.png)
 
 其他细节第一次请求`http://match.yuanrenxue.com/match/9`设置cookie中的时间戳是动态的并且加密的次数也不同，时间戳可以用正则表达取一下，加密多少次没有跟sessionid绑定而是以加密结果的第一位传给服务器，所以可以固定加密次数。  
