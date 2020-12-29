@@ -83,7 +83,7 @@ for (var _0xe88f11 = 1; _0xe88f11 <= 2; _0xe88f11++) {
 其他细节第一次请求`http://match.yuanrenxue.com/match/9`设置cookie中的时间戳是动态的并且加密的次数也不同，时间戳可以用正则表达取一下，加密多少次没有跟sessionid绑定而是以加密结果的第一位传给服务器，所以可以固定加密次数。  
 
 ## 完整代码
-[完整代码](../../match-yuanrenxue/match09)  
+[完整代码](../../match-yuanrenxue/)  
 
 ## 成功留念
 ![](../success_pictures/success09.png)
