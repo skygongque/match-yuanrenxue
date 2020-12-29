@@ -19,7 +19,7 @@ if hasTs:
     ts = hasTs.group(1)
     print(ts)
     # udc.js文件必须每次都重新加载 否则生成的cookie错误
-    nodejs = os.popen('node udc_m3 '+ts)
+    nodejs = os.popen('node udc_2219 '+ts)
     m_cookie = nodejs.read().replace('\n', '')
     nodejs.close()
     # print(m_cookie)
