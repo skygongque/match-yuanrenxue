@@ -23,7 +23,7 @@ def getdata(page):
     url = "http://match.yuanrenxue.com/api/match/4?page={}".format(str(page))
 
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
+        'User-Agent': 'yuanrenxue.project',
         'X-Requested-With': 'XMLHttpRequest',
         'Referer': 'http://match.yuanrenxue.com/match/4'
     }
@@ -59,10 +59,16 @@ def parse(data):
 
 
 def main():
-    for i in range(1,4):
+    alldata = []
+    for i in range(1,6):
         data = getdata(i)
         pagedata = parse(data)
         print('page',i,pagedata)
+        alldata +=pagedata
+    total = 0
+    for each in alldata:
+        total += int(each)
+    print(total)
 
 
 if __name__ == "__main__":

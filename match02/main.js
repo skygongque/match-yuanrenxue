@@ -11,6 +11,7 @@ async function main() {
         let url = 'http://match.yuanrenxue.com/api/match/2?page=' + page;
         let response = await requestData1(url);
         var temp_list = JSON.parse(response).data;
+        console.log(temp_list)
         temp_list.forEach(element => {
             sums += element.value;
         });
@@ -22,9 +23,10 @@ async function main() {
 async function requestData1(url) {
     var config = {
         method: 'get',
-        url: 'http://match.yuanrenxue.com/api/match/2?page=2',
+        url: url,
         headers: {
-            'Cookie': getCookie.getCookie(getCookie.getTime())
+            'Cookie': getCookie.getCookie(getCookie.getTime()),
+            'User-Agent': 'yuanrenxue.project'
         }
     };
     try {

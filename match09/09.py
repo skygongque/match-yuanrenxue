@@ -27,9 +27,21 @@ if hasTs:
     c.set('m', m_cookie)  # 增加cookie的值
     s.cookies.update(c)  # 更新s的cookie
     # print(s.cookies)
+    result_list = []
+
     for page in range(1, 6):
         res = s.get(
             'http://match.yuanrenxue.com/api/match/9?page={}'.format(str(page)), headers=headers)
         print(res.text)
+        result_list += res.json()['data']
+    
+    total = 0
+    count = 0
+    for each in result_list:
+        count +=1
+        total += each['value']
+    print('total',total)
+    print('average',total/count)
+
 else:
     print('no ts')

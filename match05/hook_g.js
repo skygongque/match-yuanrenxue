@@ -8,6 +8,18 @@
         return ret;
     }
 })();
+
+(function hook_0x474032() {
+    var new_0x474032 = _0x474032;
+    _0x474032 = function (e) {
+        var ret = new_0x474032(e);
+        // debugger
+        console.log('_$Jy',_$Jy,'_$tT',_$tT,'_$6_',_$6_)
+        console.log("加密前:", e, "加密后:", ret);
+        return ret;
+    }
+})();
+
 // console.log('_$Jy',_$Jy,'_$tT',_$tT,'_$6_',_$6_)
 // hook window attr simple
 Object.defineProperty(window, "_$Jy", {

@@ -26,7 +26,7 @@ def getHtml(page):
 
     response = requests.get(url,headers=headers)
 
-    return response.text
+    return response.json()
 
 
 if __name__ == "__main__":
@@ -36,3 +36,12 @@ if __name__ == "__main__":
     for i in range(1, 6):
         res = getHtml(i)
         print(res)
+        result_list += res['data']
+    
+    total = 0
+    count = 0
+    for each in result_list:
+        count +=1
+        total += each['value']
+    print('total',total)
+    print('average',total/count)

@@ -21,7 +21,9 @@ session = requests.Session()
 # 只有这种传递headers的方式可行 
 session.headers = HEADERS
 # session.headers.update(HEADERS)
-cookie_url = "http://match.yuanrenxue.com/logo"
+# cookie_url = "http://match.yuanrenxue.com/logo"
+# 改动设置cookie的url
+cookie_url = "http://match.yuanrenxue.com/jssm"
 
 Registration = []
 for page in range(1, 6):
@@ -31,7 +33,7 @@ for page in range(1, 6):
     print(r.cookies)
     api_url = f"http://match.yuanrenxue.com/api/match/3?page={page}"
     response = session.get(api_url)
-    # print(response.text)
+    print(response.text)
     for each in response.json()['data']:
         Registration.append(each['value'])
 
