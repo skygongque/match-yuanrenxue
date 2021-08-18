@@ -3,7 +3,8 @@
 ```
 https://match.yuanrenxue.com/match/10
 ```
-
+总的评价：4代R数的低配静态版的壳 + jsjiami.com.v6 + obfuscator  
+最近学习了AST拿这个题试一下水，从编写`提高代码可读性的插件`、`搭建本地调试环境`、`扣代码`花了整整3天，最后成功的一刻，喜悦满溢。
 ## 调试工具和本地调式环境的搭建
 
 **确保安装以下软件或环境**  
@@ -33,7 +34,7 @@ yuanrenxue_36 += String["fromCharCode"]($_ts["dfe1683"][yuanrenxue_229]["charCod
 yuanrenxue_18 = atob(yuanrenxue_36);
 yuanrenxue_31(78, yuanrenxue_18);
 ```
-2. 把首页请求数据的代码还原，用obfuscator混淆的，其他还有几段ob混淆的都不重要但无限debugger很烦，还原之后就清爽多了。请求在这里但请求的参数m并不是在这里生成的，具体后面再讲。
+2. 把首页请求数据的代码还原，用obfuscator混淆的，其他还有几段，ob混淆的都不重要但无限debugger很烦，还原之后就清爽多了。请求在这里但请求的参数m并不是在这里生成的，具体后面再讲。
 ```
 window["url"] = "/api/match/10";
 
@@ -71,15 +72,18 @@ request();
 ```
 
 3. eval中控制流平坦化代码的ifelse转switch，减少单步调试时跳的次数
-    **太长了具体就不放了**
-由于控制流平台化代码中有对自增变量进行加减操作，以及最大的控制流中属于是**多个函数合并的大型控制控制流代码**，存在多给入口和出口初学AST的我还还原不了
+  具体见github
+```
+https://github.com/skygongque/match-yuanrenxue/tree/master/match10
+```
+由于控制流平坦化代码中有对自增变量进行加减操作，以及最大的控制流中属于是**多个函数合并的大型控制流代码**，存在多个入口和出口，我还还原不了**请大佬指点**
 
 ## 入口寻找
 ### eval入口
 它套了一个4代R数的壳，易得入口是下图，首页搜`call`即可
 ![](pictures/02.png)
 ### eval中m参数加密的入口
-上面这个特别长的eval执行完了只有什么也没返回还是不知道m参数加密的的入口，细心一点可以发现这时候发的ajax请求会自己加上m参数  
+上面这个特别长的eval执行完了什么也没返回还是不知道m参数加密的的入口，细心一点可以发现这时候发的ajax请求会自己加上m参数  
 控制台输出以下xhr的`open`方法，发现果然被重写了，还是熟悉的配方  
 ![](./pictures/03.png)
 
@@ -131,7 +135,7 @@ function _yrxyA$(_yrx7jl, _yrxcze) {
 
 ## 扣代码
 接下去就是痛苦的扣代码环节了，比较浏览器的结果和nodejs环境的结果最终使得nodejs可以得到与浏览器中相同的结果就可以了。  
-一个小技巧就是打印了依次执行的case的数字nodejs与浏览器比价以**免误入歧途**  
+一个小技巧就是打印了依次执行的case的数字，nodejs与浏览器比较以**免误入歧途**  
 ![](./pictures/05.png)
 
 部分浏览器环境监测的代码处理    
@@ -179,6 +183,7 @@ case 454:
 
 ## 最终代码
 ```
+https://github.com/skygongque/match-yuanrenxue/tree/master/match10
 ```
 1. 先使用`npm instal express`安装依赖，`node server.js`启动服务
 2. `python main.py`玩耍
@@ -187,7 +192,6 @@ case 454:
 - eval中变量的发现，可以通过比较两份eval字符串发现
 ![](./pictures/05.png)
 
-- ifelse转switch的AST代码
-```
 
-```
+
+
