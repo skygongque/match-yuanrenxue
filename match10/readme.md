@@ -190,7 +190,7 @@ https://github.com/skygongque/match-yuanrenxue/tree/master/match10
 
 ## 其他重要的点
 - eval中变量的发现，可以通过比较两份eval字符串发现
-![](./pictures/05.png)
+![](./pictures/06.png)
 
 
 
