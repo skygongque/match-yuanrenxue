@@ -8,7 +8,7 @@ cookie反爬虫
 动态cookie2  
 AST 还原JavaScript混淆代码。  
 
-[第10题 详细思路](./match10/readme.md)
+[第10题 详细思路](./match10/readme.md)  
 4代R数的低配静态版的壳 + jsjiami.com.v6 + obfuscator  
 
 
