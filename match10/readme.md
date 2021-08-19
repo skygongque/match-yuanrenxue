@@ -302,6 +302,6 @@ https://github.com/skygongque/match-yuanrenxue/tree/master/match10
 
 ## 参考文章
 爬虫术与道公众号 四代R数的文章 https://mp.weixin.qq.com/s/r3FXjvT5Mm9Ikg_bDEadcw  
-蔡老板星球和公众号AST https://wx.zsxq.com/dweb2/index/group/48415254524248   
+蔡老板星球和公众号AST相关 https://wx.zsxq.com/dweb2/index/group/48415254524248   
 某大佬AST基础概念和相关操作的整理 https://evilrecluse.top/post/7389a59f/  
 
