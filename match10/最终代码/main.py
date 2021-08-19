@@ -2,7 +2,7 @@ import requests
 import re
 import base64
 
-# 使用session保持回话
+# 使用session保持会话
 sess = requests.Session()
 headers = {
     # auto delete br encoding. cos requests and scrapy can not decode it.
