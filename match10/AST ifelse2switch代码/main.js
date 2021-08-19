@@ -78,8 +78,6 @@ function replaceWhile(path) {
       }else{
         caseList.push(consequentstat);
       }
-      // caseList.push(consequentstat);
-      // console.log(generator(consequentstat)['code'])
     }
   }
   function solveAlternateStat(alternatestat) {
@@ -92,8 +90,6 @@ function replaceWhile(path) {
       }else{
         caseList.push(alternatestat);
       }
-      // caseList.push(alternatestat)
-      // console.log(generator(alternatestat)['code'])
     }
   }
   // console.log(caseList)
@@ -109,8 +105,6 @@ function replaceWhile(path) {
   let switchNode = t.SwitchStatement(discriminNode, caseList);
   path.get('body.body')[1].replaceWith(switchNode)
   path.get('body.body')[0].remove()
-  // console.log(generator(switchNode)['code'])
-  // console.log(body[0].expression.left)
 }
 traverse(ast, { WhileStatement: { exit: [replaceWhile] }, })
 
