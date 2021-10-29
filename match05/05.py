@@ -5,7 +5,7 @@ import time
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 """
-2021.7.8测试有效
+2021.10.29测试有效
 """
 def gettime():
     return str(int(time.time()))+'000'
@@ -22,19 +22,21 @@ def main():
     print(cm)
     data += cm
     nodejs.close()
-    key = base64.b64encode(m[:-1].encode())
+    # key = base64.b64encode(m[:-1].encode())
+    key = base64.b64encode(m.encode())[0:16]
     cryptor = AES.new(key=key, mode=AES.MODE_ECB)
     data = base64.b64encode(cryptor.encrypt(pad(data.encode(), AES.block_size))).decode()
     print(data)
     headers = {
-        'cookie': 'm='+cm+'; RM4hZBv0dDon443M='+data+'; tk=964448564923972225; sessionid=wsrn0le3dpqkuv1pm9q6h99tu5yqrqgw;',
+        # 'cookie': 'm='+cm+'; RM4hZBv0dDon443M='+data+'; tk=964448564923972225; sessionid=wsrn0le3dpqkuv1pm9q6h99tu5yqrqgw;',
         'user-agent':'yuanrenxue.project'
     }
     popularitylist = []
     
     for page in range(1, 6):
         url = 'http://match.yuanrenxue.com/api/match/5?page='+str(page)+'&m='+m+'&f='+f
-        response = requests.get(url, headers=headers)
+        # 字典方式传cookie值
+        response = requests.get(url, headers=headers,cookies={'RM4hZBv0dDon443M':data,'m':cm})
         print(response.text)
         for each in response.json()['data']:
             popularitylist.append(each['value'])
